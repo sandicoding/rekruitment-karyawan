@@ -15,8 +15,8 @@ class CreateAppliesTable extends Migration
     {
         Schema::create('applies', function (Blueprint $table) {
             $table->id();
-            $table->unique(['course_id', 'user_id']);
-            $table->enum('status', ['menunggu','diterima', 'ditolak'])->default('menunggu');
+            $table->unique(['id_user', 'id_job']);
+            $table->enum('status', ['menunggu', 'diterima', 'ditolak'])->default('menunggu');
             $table->text('description')->nullable();
             $table->text('file');
             $table->foreignId('id_job')->constrained('jobs')->onDelete('cascade');

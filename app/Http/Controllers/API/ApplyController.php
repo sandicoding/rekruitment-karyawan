@@ -4,19 +4,21 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Apply;
+use App\Models\Job;
 use Illuminate\Support\Facades\Validator;
 
 class ApplyController extends Controller
 {
     //
 
-    public function apply(Request $request)
+    public function apply(Request $request, $id)
     {
+
+        $job = Job::find($id);
+
         $rules = [
-            'id_user' => 'required|exists:users,id',
-            'id_job' => 'required|exists:jobs,id',
-            'status' => 'required',
             'file' => 'required|mimes:csv,txt,xlx,xls,pdf,png,jpg,jpeg,gif|max:5048'
         ];
 
@@ -32,15 +34,22 @@ class ApplyController extends Controller
         }
 
         $data['file'] = $request->file('file')->store('assets/file', 'public');
+        $data['id_user'] = Auth::user()->id;
+        $data['id_job'] = $job->id;
 
         $apply = Apply::create($data);
 
 
-        return ResponseFormatter::success($apply,'lamaran anda berhasil di ajukan');
-
+        return ResponseFormatter::success($apply, 'lamaran anda berhasil di ajukan');
     }
 
-    public function myApply() {
+    public function myApply()
+    {
 
+        $userID = Auth::user()->id;
+
+        $data = Apply::where('id_user', $userID)->get();
+
+        return ResponseFormatter::success($data, 'lamaran anda berhasil di ajukan');
     }
 }
