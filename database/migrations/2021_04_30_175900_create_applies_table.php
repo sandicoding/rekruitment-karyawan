@@ -15,13 +15,16 @@ class CreateAppliesTable extends Migration
     {
         Schema::create('applies', function (Blueprint $table) {
             $table->id();
-            $table->unique(['id_user', 'id_job']);
+            $table->foreignId('id_user')->nullable()->index();
+            $table->foreignId('id_job')->nullable()->index();
             $table->enum('status', ['menunggu', 'diterima', 'ditolak'])->default('menunggu');
             $table->text('description')->nullable();
             $table->text('file');
-            $table->foreignId('id_job')->constrained('jobs')->onDelete('cascade');
-            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
+
             $table->timestamps();
+
+            $table->foreign('id_job')->references('id')->on('jobs')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
