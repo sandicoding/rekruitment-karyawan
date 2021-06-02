@@ -14,6 +14,7 @@ class Apply extends Model
         'id_job',
         'status',
         'description',
+        'file',
     ];
 
 
