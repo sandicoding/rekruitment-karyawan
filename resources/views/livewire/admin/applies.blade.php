@@ -28,8 +28,8 @@
                     <table class="table table-light">
                         <thead class="thead-light">
                             <tr>
-                                <td>id user</td>
-                                <td>id job</td>
+                                <td>Name</td>
+                                <td>Job</td>
                                 <td>status</td>
                                 <td>description</td>
                                 <td>file</td>
@@ -41,8 +41,8 @@
                         <tbody>
                             @foreach ($items as $item)
                             <tr>
-                                <td>{{ $item->id_user }}</td>
-                                <td>{{ $item->id_job }}</td>
+                                <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->job->name }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>{{ $item->file }}</td>

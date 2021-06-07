@@ -24,8 +24,9 @@ class AppyController extends Component
 
     public function render()
     {
+
         return view('livewire.admin.applies', [
-            'items' => ModelsAppyController::all()
+            'items' => ModelsAppyController::with(['job', 'user'])->get()
         ]);
     }
 
