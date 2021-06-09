@@ -21,6 +21,9 @@ use App\Http\Livewire\CrudGenerator;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/register', function () {
+//     return redirect("register");
+// });
 
 
 
