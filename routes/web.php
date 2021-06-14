@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\AdminDataJob;
 use App\Http\Livewire\Admin\JobController as Job;
 use App\Http\Livewire\Admin\AppyController as Apply;
+use App\Http\Livewire\Admin\DashboardController as dash;
 use App\Http\Livewire\CrudGenerator;
 
 /*
@@ -28,9 +29,12 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' => ['admin', 'auth:sanctum', 'verified']], function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+
+
+    //     return view('dashboard');
+    // })->name('dashboard');
+    Route::get('/dashboard', dash::class)->name('dashboard');
     Route::get('/job', Job::class)->name('job');
     Route::get('/apply', Apply::class)->name('apply');
     Route::get('/crud-generator', CrudGenerator::class)->name('crud.generator');

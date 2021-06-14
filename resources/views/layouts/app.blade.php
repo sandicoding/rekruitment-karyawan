@@ -41,10 +41,11 @@
     <div class="wrapper">
         <div class="main-header">
             <!-- Logo Header -->
-            <div class="logo-header" data-background-color="blue">
+            <div class="logo-header" data-background-color="white">
 
                 <a href="{{route('dashboard')}}" class="logo">
-                    <img src="../../assets/img/logo.png" style="height: 40px" alt="navbar brand" class="navbar-brand">
+                    <img src="../../assets/img/logo-cv.png" style="height:50px" alt="navbar brand" class="navbar-brand">
+
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">

@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="{{route('dashboard')}}">
-                            <span><i class="fas fa-arrow-left mr-3"></i>Membership Plan</span>
+                            <span><i class="fas fa-arrow-left mr-3"></i>Daftar Lamaran</span>
                         </a>
                         <div class="pull-right">
                             @if (!$form && !$modal)
@@ -45,7 +45,11 @@
                                 <td>{{ $item->job->name }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td>{{ $item->description }}</td>
-                                <td>{{ $item->file }}</td>
+                                <td>
+                                    <a class="btn btn-primary" href={{$item->file}} download>
+                                        Download File
+                                    </a>
+                                </td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td>

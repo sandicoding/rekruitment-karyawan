@@ -5,15 +5,18 @@
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="{{route('dashboard')}}">
-                            <span><i class="fas fa-arrow-left mr-3"></i>Membership Plan</span>
+                            <span><i class="fas fa-arrow-left mr-3"></i>Daftar Lowongan</span>
                         </a>
                         <div class="pull-right">
-                        @if ($form_active)
-                        <button class="btn btn-danger btn-sm" wire:click="toggleForm(false)"><i class="fas fa-times"></i> Cancel</button>
-                        @else
-                        <button class="btn btn-primary btn-sm" wire:click="{{$modal ? 'showModal' : 'toggleForm(true)'}}"><i class="fas fa-plus"></i> Add
-                            New</button>
-                        @endif
+                            @if ($form_active)
+                            <button class="btn btn-danger btn-sm" wire:click="toggleForm(false)"><i
+                                    class="fas fa-times"></i> Cancel</button>
+                            @else
+                            <button class="btn btn-primary btn-sm"
+                                wire:click="{{$modal ? 'showModal' : 'toggleForm(true)'}}"><i class="fas fa-plus"></i>
+                                Add
+                                New</button>
+                            @endif
                         </div>
                     </h4>
                 </div>
@@ -24,15 +27,15 @@
                 <div class="card-body">
                     @if ($form_active)
                     <x-text-field type="text" name="name" label="name" />
-<div wire:ignore class="form-group @error('description')has-error has-feedback @enderror">
-                                <label for="description" class="text-capitalize">description</label>
-                                <textarea wire:model="description" id="description" class="form-control"></textarea>
-                                @error('description')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-<x-text-field type="date" name="created_at" label="created at" />
-<x-text-field type="date" name="updated_at" label="updated at" />
+                    <div wire:ignore class="form-group @error('description')has-error has-feedback @enderror">
+                        <label for="description" class="text-capitalize">description</label>
+                        <textarea wire:model="description" id="description" class="form-control"></textarea>
+                        @error('description')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <x-text-field type="date" name="created_at" label="created at" />
+                    <x-text-field type="date" name="updated_at" label="updated at" />
 
                     <div class="form-group">
                         <button class="btn btn-primary pull-right"
@@ -43,23 +46,25 @@
                         <thead class="thead-light">
                             <tr>
                                 <td>name</td>
-<td>description</td>
-<td>created at</td>
-<td>updated at</td>
+                                <td>description</td>
+                                <td>created at</td>
+                                <td>updated at</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
                             <tr>
-                               <td>{{ $item->name }}</td>
-<td>{{ $item->description }}</td>
-<td>{{ $item->created_at }}</td>
-<td>{{ $item->updated_at }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->description }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->updated_at }}</td>
                                 <td>
-                                    <button class="btn btn-success btn-sm" wire:click="getDataById('{{ $item->id }}')" id="btn-edit-{{ $item->id }}"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-success btn-sm" wire:click="getDataById('{{ $item->id }}')"
+                                        id="btn-edit-{{ $item->id }}"><i class="fas fa-edit"></i></button>
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#confirm-modal" wire:click="getId('{{ $item->id }}')" id="btn-delete-{{ $item->id }}"><i class="fas fa-trash"></i></button>
+                                        data-target="#confirm-modal" wire:click="getId('{{ $item->id }}')"
+                                        id="btn-delete-{{ $item->id }}"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -96,7 +101,7 @@
     <script src="{{asset('assets/js/plugin/summernote/summernote-bs4.min.js')}}"></script>
 
     <script>
-         document.addEventListener('livewire:load', function(e) {
+        document.addEventListener('livewire:load', function(e) {
             window.livewire.on('loadForm', (data) => {
                 $('#description').summernote({
             placeholder: 'description',
