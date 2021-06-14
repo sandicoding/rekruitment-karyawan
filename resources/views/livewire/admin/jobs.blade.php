@@ -34,6 +34,8 @@
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+                    <x-text-field type="text" name="type" label="type" />
+                    <x-text-field type="text" name="pengalaman" label="pengalaman" />
                     <x-text-field type="date" name="created_at" label="created at" />
                     <x-text-field type="date" name="updated_at" label="updated at" />
 
@@ -47,6 +49,8 @@
                             <tr>
                                 <td>name</td>
                                 <td>description</td>
+                                <td>type</td>
+                                <td>pengalaman</td>
                                 <td>created at</td>
                                 <td>updated at</td>
                                 <td>Action</td>
@@ -57,6 +61,8 @@
                             <tr>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->description }}</td>
+                                <td>{{ $item->type }}</td>
+                                <td>{{ $item->pengalaman }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td>

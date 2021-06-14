@@ -10,6 +10,8 @@ class JobController extends Component
     public $jobs_id;
     public $name;
     public $description;
+    public $type;
+    public $pengalaman;
     public $created_at;
     public $updated_at;
 
@@ -32,6 +34,8 @@ class JobController extends Component
         ModelsJobController::create([
             'name'  => $this->name,
             'description'  => $this->description,
+            'type'  => $this->type,
+            'pengalaman'  => $this->pengalaman,
             'created_at'  => $this->created_at,
             'updated_at'  => $this->updated_at
         ]);
@@ -46,6 +50,8 @@ class JobController extends Component
         ModelsJobController::find($this->jobs_id)->update([
             'name'  => $this->name,
             'description'  => $this->description,
+            'type'  => $this->type,
+            'pengalaman'  => $this->pengalaman,
             'created_at'  => $this->created_at,
             'updated_at'  => $this->updated_at
         ]);
@@ -67,6 +73,8 @@ class JobController extends Component
         $rule = [
             'name'  => 'required',
             'description'  => 'required',
+            'type'  => 'required',
+            'pengalaman'  => 'required',
             'created_at'  => 'required',
             'updated_at'  => 'required'
         ];
@@ -80,6 +88,8 @@ class JobController extends Component
         $this->jobs_id = $jobs->id;
         $this->name = $jobs->name;
         $this->description = $jobs->description;
+        $this->type = $jobs->type;
+        $this->pengalaman = $jobs->pengalaman;
         $this->created_at = $jobs->created_at;
         $this->updated_at = $jobs->updated_at;
         if ($this->form) {
@@ -115,6 +125,8 @@ class JobController extends Component
         $this->jobs_id = null;
         $this->name = null;
         $this->description = null;
+        $this->type = null;
+        $this->pengalaman = null;
         $this->created_at = null;
         $this->updated_at = null;
         $this->form = true;
