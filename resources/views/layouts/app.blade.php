@@ -122,16 +122,22 @@
                         </div>
                     </div>
                     <ul class="nav nav-primary">
-                        <li class="nav-item">
+                        <li class="nav-item {{request()->routeIs('dashboard') ? 'active' : ''}}">
                             <a href="{{route('dashboard')}}">
                                 <i class="fas fa-home"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
+                        <li class="nav-item {{request()->routeIs('users') ? 'active' : ''}}">
+                            <a href="{{ route('users')}}">
+                                <i class="fas fa-user"></i>
+                                <p>User</p>
+                            </a>
+                        </li>
                         {{-- {{request()->routeIs('job') ? 'active' : ''}} --}}
                         <li class="nav-item {{request()->routeIs('job') ? 'active' : ''}}">
                             <a href="{{ route('job')}}">
-                                <i class="fas fa-home"></i>
+                                <i class="fas fa-archive"></i>
                                 <p>Buka Lowongan</p>
                             </a>
                         </li>
@@ -146,7 +152,7 @@
 
                         <li class="nav-item {{request()->routeIs('apply') ? 'active' : ''}}">
                             <a href="{{ route('apply')}}">
-                                <i class="fas fa-cogs"></i>
+                                <i class="fas fa-address-card"></i>
                                 <p>Pelamar</p>
                             </a>
                         </li>

@@ -2,17 +2,17 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Apply as ModelsAppyController;
+use App\Models\User as ModelsUserController;
 use Livewire\Component;
 
-class AppyController extends Component
+class UserController extends Component
 {
-    public $applies_id;
-    public $id_user;
-    public $id_job;
-    public $status;
-    public $description;
-    public $file;
+    public $users_id;
+    public $name;
+    public $email;
+    public $no_telpon;
+    public $alamat;
+    public $roles;
     public $created_at;
     public $updated_at;
 
@@ -24,21 +24,21 @@ class AppyController extends Component
 
     public function render()
     {
-
-        return view('livewire.admin.applies', [
-            'items' => ModelsAppyController::with(['job', 'user'])->get()
+        return view('livewire.admin.users', [
+            'items' => ModelsUserController::all()
         ]);
     }
 
     public function store()
     {
         $this->_validate();
-        ModelsAppyController::create([
-            'id_user'  => $this->id_user,
-            'id_job'  => $this->id_job,
-            'status'  => $this->status,
-            'description'  => $this->description,
-            'file'  => $this->file,
+        ModelsUserController::create([
+            'name'  => $this->name,
+            'email'  => $this->email,
+            'no_telpon'  => $this->no_telpon,
+            'alamat' => $this->alamat,
+            'email'  => $this->email,
+            'roles'  => $this->roles,
             'created_at'  => $this->created_at,
             'updated_at'  => $this->updated_at
         ]);
@@ -50,12 +50,12 @@ class AppyController extends Component
     public function update()
     {
         $this->_validate();
-        ModelsAppyController::find($this->applies_id)->update([
-            // 'id_user'  => $this->id_user,
-            // 'id_job'  => $this->id_job,
-            'status'  => $this->status,
-            'description'  => $this->description,
-            // 'file'  => $this->file,
+        ModelsUserController::find($this->users_id)->update([
+            'name'  => $this->name,
+            'email'  => $this->email,
+            'no_telpon'  => $this->no_telpon,
+            'alamat' => $this->alamat,
+            'roles'  => $this->roles,
             'created_at'  => $this->created_at,
             'updated_at'  => $this->updated_at
         ]);
@@ -66,7 +66,7 @@ class AppyController extends Component
 
     public function delete()
     {
-        ModelsAppyController::find($this->applies_id)->delete();
+        ModelsUserController::find($this->users_id)->delete();
 
         $this->_reset();
         return $this->emit('showAlert', ['msg' => 'Data Berhasil Dihapus']);
@@ -75,11 +75,9 @@ class AppyController extends Component
     public function _validate()
     {
         $rule = [
-            'id_user'  => 'required',
-            'id_job'  => 'required',
-            'status'  => 'required',
-            'description'  => 'required',
-            'file'  => 'required',
+            'name'  => 'required',
+            'email'  => 'required',
+            'roles'  => 'required',
             'created_at'  => 'required',
             'updated_at'  => 'required'
         ];
@@ -87,17 +85,17 @@ class AppyController extends Component
         return $this->validate($rule);
     }
 
-    public function getDataById($applies_id)
+    public function getDataById($users_id)
     {
-        $applies = ModelsAppyController::find($applies_id);
-        $this->applies_id = $applies->id;
-        $this->id_user = $applies->id_user;
-        $this->id_job = $applies->id_job;
-        $this->status = $applies->status;
-        $this->description = $applies->description;
-        $this->file = $applies->file;
-        $this->created_at = $applies->created_at;
-        $this->updated_at = $applies->updated_at;
+        $users = ModelsUserController::find($users_id);
+        $this->users_id = $users->id;
+        $this->name = $users->name;
+        $this->email = $users->email;
+        $this->no_telpon = $users->no_telpon;
+        $this->alamat = $users->alamat;
+        $this->roles = $users->roles;
+        $this->created_at = $users->created_at;
+        $this->updated_at = $users->updated_at;
         if ($this->form) {
             $this->form_active = true;
             $this->emit('loadForm');
@@ -108,10 +106,10 @@ class AppyController extends Component
         $this->update_mode = true;
     }
 
-    public function getId($applies_id)
+    public function getId($users_id)
     {
-        $applies = ModelsAppyController::find($applies_id);
-        $this->applies_id = $applies->id;
+        $users = ModelsUserController::find($users_id);
+        $this->users_id = $users->id;
     }
 
     public function toggleForm($form)
@@ -128,12 +126,12 @@ class AppyController extends Component
     public function _reset()
     {
         $this->emit('closeModal');
-        $this->applies_id = null;
-        $this->id_user = null;
-        $this->id_job = null;
-        $this->status = null;
-        $this->description = null;
-        $this->file = null;
+        $this->users_id = null;
+        $this->name = null;
+        $this->email = null;
+        $this->no_telpon = null;
+        $this->alamat = null;
+        $this->roles = null;
         $this->created_at = null;
         $this->updated_at = null;
         $this->form = false;

@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="{{route('dashboard')}}">
-                            <span><i class="fas fa-arrow-left mr-3"></i>Daftar Lamaran</span>
+                            <span><i class="fas fa-arrow-left mr-3"></i>User Data</span>
                         </a>
                         <div class="pull-right">
                             @if (!$form && !$modal)
@@ -28,13 +28,11 @@
                     <table class="table table-light">
                         <thead class="thead-light">
                             <tr>
-                                <td>Name</td>
-                                <td>No Hp</td>
-                                <td>Alamat</td>
-                                <td>Job</td>
-                                <td>status</td>
-                                <td>description</td>
-                                <td>file</td>
+                                <td>name</td>
+                                <td>email</td>
+                                <td>no_telpon</td>
+                                <td>alamat</td>
+                                <td>roles</td>
                                 <td>created at</td>
                                 <td>updated at</td>
                                 <td>Action</td>
@@ -43,23 +41,16 @@
                         <tbody>
                             @foreach ($items as $item)
                             <tr>
-                                <td>{{ $item->user->name }}</td>
-                                <td>{{ $item->user->no_telpon }}</td>
-                                <td>{{ $item->user->alamat }}</td>
-                                <td>{{ $item->job->name }}</td>
-                                <td>{{ $item->status }}</td>
-                                <td>{{ $item->description }}</td>
-                                <td>
-                                    <a class="btn btn-primary" href={{$item->file}} download>
-                                        Download Berkas Pelamar
-                                    </a>
-                                </td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->no_telpon }}</td>
+                                <td>{{ $item->alamat }}</td>
+                                <td>{{ $item->roles }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td>
                                     <button class="btn btn-success btn-sm" wire:click="getDataById('{{ $item->id }}')"
-                                        id="btn-edit-{{ $item->id }}"><i class="fas fa-edit"></i> Tanggapi
-                                        Lamaran</button>
+                                        id="btn-edit-{{ $item->id }}"><i class="fas fa-edit"></i></button>
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                         data-target="#confirm-modal" wire:click="getId('{{ $item->id }}')"
                                         id="btn-delete-{{ $item->id }}"><i class="fas fa-trash"></i></button>
@@ -82,17 +73,15 @@
                         </h5>
                     </div>
                     <div class="modal-body">
-                        {{-- <x-text-field type="number" name="id_user" label="id user" />
-                        <x-text-field type="number" name="id_job" label="id job" /> --}}
-                        <x-select name="status" label="status">
-                            <option value="">Select status</option>
-                            <option value="menunggu">menunggu</option>
-                            <option value="diterima">diterima</option>
-                            <option value="ditolak">ditolak</option>
-
+                        <x-text-field type="text" name="name" label="name" />
+                        <x-text-field type="text" name="email" label="email" />
+                        <x-text-field type="text" name="no_telpon" label="no_telpon" />
+                        <x-text-field type="text" name="alamat" label="alamat" />
+                        <x-select name="roles" label="roles">
+                            <option value="">Select roles</option>
+                            <option value="HRD">HRD</option>
+                            <option value="ADMIN">ADMIN</option>
                         </x-select>
-                        <x-textarea type="textarea" name="description" label="description" />
-                        {{-- <x-text-field type="text" name="file" label="file" /> --}}
                         <x-text-field type="date" name="created_at" label="created at" />
                         <x-text-field type="date" name="updated_at" label="updated at" />
                     </div>
