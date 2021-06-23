@@ -21,7 +21,7 @@ use App\Http\Livewire\CrudGenerator;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 // Route::get('/register', function () {
 //     return redirect("register");
@@ -30,11 +30,6 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' => ['admin', 'auth:sanctum', 'verified']], function () {
-    // Route::get('/dashboard', function () {
-
-
-    //     return view('dashboard');
-    // })->name('dashboard');
     Route::get('/dashboard', dash::class)->name('dashboard');
     Route::get('/user', Users::class)->name('users');
     Route::get('/job', Job::class)->name('job');
