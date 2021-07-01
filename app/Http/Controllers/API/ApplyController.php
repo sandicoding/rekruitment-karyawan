@@ -49,7 +49,7 @@ class ApplyController extends Controller
 
         $userID = Auth::user()->id;
 
-        $data = Apply::where('id_user', $userID)->get();
+        $data = Apply::with(['job', 'user'])->where('id_user', $userID)->get();
 
         return ResponseFormatter::success($data, 'Pengajuan Lowongan');
     }
