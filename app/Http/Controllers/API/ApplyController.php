@@ -32,6 +32,8 @@ class ApplyController extends Controller
         }
 
         $data['file'] = $request->file('file')->store('assets/file', 'public');
+        $data['id_user'] = Auth::user()->id;
+
 
         $apply = Apply::create($data);
 
@@ -40,7 +42,9 @@ class ApplyController extends Controller
 
     }
 
-    public function myApply() {
+    public function myApply($id) {
+
+
 
     }
 }
