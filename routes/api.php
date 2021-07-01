@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\ApplyController;
+use App\Http\Controllers\API\JobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +17,17 @@ use App\Http\Controllers\API\UserController;
 |
 */
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('user', [UserController::class, 'fetch']);
-    Route::post('user', [UserController::class, 'updateProfile']);
-    Route::post('user/photo', [UserController::class, 'updatePhoto']);
-    Route::post('logout', [UserController::class, 'logout']);
-});
-
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 
 
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('user', [UserController::class, 'fetch']);
+    Route::post('apply/{id}', [ApplyController::class, 'apply']);
+    Route::get('job', [JobController::class, 'index']);
+    Route::get('job/{id}', [JobController::class, 'detail']);
+    Route::get('apply/my-apply', [ApplyController::class, 'MyApply']);
+    Route::post('user', [UserController::class, 'updateProfile']);
+    Route::post('user/photo', [UserController::class, 'updatePhoto']);
+    Route::post('logout', [UserController::class, 'logout']);
+});

@@ -14,17 +14,18 @@ class Apply extends Model
         'id_job',
         'status',
         'description',
+        'file',
     ];
 
 
 
     public function job()
     {
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(Job::class, 'id_job', 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }

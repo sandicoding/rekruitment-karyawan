@@ -9,7 +9,10 @@ class Job extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description','image'];
+    protected $fillable = ['name', 'description', 'type', 'pengalaman'];
 
-
+    public function apply()
+    {
+        return $this->hasOne(Apply::class);
+    }
 }
