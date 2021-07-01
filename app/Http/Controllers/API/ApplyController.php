@@ -51,6 +51,13 @@ class ApplyController extends Controller
 
         $data = Apply::with(['job', 'user'])->where('id_user', $userID)->get();
 
-        return ResponseFormatter::success($data, 'Pengajuan Lowongan');
+        return ResponseFormatter::success($data, 'My Apply Show');
+    }
+
+    public function DetailApply($id) {
+
+        $data = Apply::with(['job'])->find($id)->get();
+
+        return ResponseFormatter::success($data, 'Detail MyApply Show');
     }
 }

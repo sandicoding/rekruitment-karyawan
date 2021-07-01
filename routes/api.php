@@ -27,6 +27,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('job', [JobController::class, 'index']);
     Route::get('job/{id}', [JobController::class, 'detail']);
     Route::get('apply/my-apply', [ApplyController::class, 'MyApply']);
+    Route::get('apply/my-apply/{id}', [ApplyController::class, 'DetailApply']);
     Route::post('user', [UserController::class, 'updateProfile']);
     Route::post('user/photo', [UserController::class, 'updatePhoto']);
     Route::post('logout', [UserController::class, 'logout']);
