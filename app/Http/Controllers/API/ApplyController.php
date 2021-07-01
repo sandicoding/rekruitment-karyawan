@@ -56,7 +56,7 @@ class ApplyController extends Controller
 
     public function DetailApply($id) {
 
-        $data = Apply::with(['job'])->find($id)->get();
+        $data = Apply::with(['job'])->find($id);
 
         return ResponseFormatter::success($data, 'Detail MyApply Show');
     }
