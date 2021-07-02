@@ -69,13 +69,24 @@ class UserController extends Controller
     public function register(Request $request)
     {
         try {
-            $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'no_telpon' => ['required'],
-                'alamat' => ['required'],
-                'password' => ['required']
-            ]);
+
+            $rules = [
+                'name' => 'required',
+                'email' => 'email|required',
+                'no_telpon' => 'required',
+                'alamat' => 'required',
+                'password' => 'required'
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $validator->errors()
+                ], 400);
+            }
 
             User::create([
                 'name' => $request->name,
