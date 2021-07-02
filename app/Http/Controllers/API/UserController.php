@@ -74,7 +74,7 @@ class UserController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'no_telpon' => ['required'],
                 'alamat' => ['required'],
-                'password' => $this->passwordRules()
+                'password' => ['required']
             ]);
 
             User::create([
