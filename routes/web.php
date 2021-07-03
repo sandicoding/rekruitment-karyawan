@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 
 
-Route::group(['middleware' => ['admin', 'auth:sanctum', 'verified']], function () {
+Route::group(['middleware' => ['admin','hrd', 'auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', dash::class)->name('dashboard');
     Route::get('/user', Users::class)->name('users');
     Route::get('/job', Job::class)->name('job');
