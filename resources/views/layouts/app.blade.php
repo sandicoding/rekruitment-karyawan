@@ -115,13 +115,14 @@
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                                 <span>
-                                    {{Auth::user()->nama}}
+                                    {{Auth::user()->name}}
                                     <span class="user-level">Administrator</span>
                                 </span>
                             </a>
                         </div>
                     </div>
                     <ul class="nav nav-primary">
+                       @if (Auth::user->roles == 'ADMIN')
                         <li class="nav-item {{request()->routeIs('dashboard') ? 'active' : ''}}">
                             <a href="{{route('dashboard')}}">
                                 <i class="fas fa-home"></i>
@@ -156,7 +157,14 @@
                                 <p>Pelamar</p>
                             </a>
                         </li>
-
+                        @elseif ( Auth::user->roles == 'HRD')
+                        <li class="nav-item {{request()->routeIs('apply') ? 'active' : ''}}">
+                            <a href="{{ route('apply')}}">
+                                <i class="fas fa-address-card"></i>
+                                <p>Pelamar</p>
+                            </a>
+                        </li>
+                        @endif
                         {{-- <li class="nav-item {{request()->routeIs('attendance.report') ? 'active' : ''}}">
                         <a href="{{route('attendance.report')}}">
                             <i class="fas fa-cogs"></i>
@@ -213,7 +221,7 @@
                             showConfirmButton: false
                         })
                     });
-                    
+
                     window.livewire.on('showAlertError', (data) => {
                         Swal.fire({
                             icon: 'error',
