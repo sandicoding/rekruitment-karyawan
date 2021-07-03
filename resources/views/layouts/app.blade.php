@@ -164,13 +164,20 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
+
+                        <li class="nav-item {{request()->routeIs('job') ? 'active' : ''}}">
+                            <a href="{{ route('job')}}">
+                                <i class="fas fa-archive"></i>
+                                <p>Buka Lowongan</p>
+                            </a>
+                        </li>
+
                         <li class="nav-item {{request()->routeIs('apply') ? 'active' : ''}}">
                             <a href="{{ route('apply')}}">
                                 <i class="fas fa-address-card"></i>
                                 <p>Pelamar</p>
                             </a>
                         </li>
-
                         @endif
                         {{-- <li class="nav-item {{request()->routeIs('attendance.report') ? 'active' : ''}}">
                         <a href="{{route('attendance.report')}}">
