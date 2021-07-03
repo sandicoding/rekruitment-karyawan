@@ -158,12 +158,19 @@
                             </a>
                         </li>
                         @elseif ( Auth::user->roles == 'HRD')
+                        <li class="nav-item {{request()->routeIs('dashboard') ? 'active' : ''}}">
+                            <a href="{{route('dashboard')}}">
+                                <i class="fas fa-home"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
                         <li class="nav-item {{request()->routeIs('apply') ? 'active' : ''}}">
                             <a href="{{ route('apply')}}">
                                 <i class="fas fa-address-card"></i>
                                 <p>Pelamar</p>
                             </a>
                         </li>
+
                         @endif
                         {{-- <li class="nav-item {{request()->routeIs('attendance.report') ? 'active' : ''}}">
                         <a href="{{route('attendance.report')}}">
