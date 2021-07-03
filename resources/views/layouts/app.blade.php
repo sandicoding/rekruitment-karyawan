@@ -122,7 +122,7 @@
                         </div>
                     </div>
                     <ul class="nav nav-primary">
-                       @if (Auth::user->roles == 'ADMIN')
+                       @if (Auth::user()->roles == 'ADMIN')
                         <li class="nav-item {{request()->routeIs('dashboard') ? 'active' : ''}}">
                             <a href="{{route('dashboard')}}">
                                 <i class="fas fa-home"></i>
@@ -157,7 +157,7 @@
                                 <p>Pelamar</p>
                             </a>
                         </li>
-                        @elseif ( Auth::user->roles == 'HRD')
+                        @elseif ( Auth::user()->roles == 'HRD')
                         <li class="nav-item {{request()->routeIs('dashboard') ? 'active' : ''}}">
                             <a href="{{route('dashboard')}}">
                                 <i class="fas fa-home"></i>
