@@ -23,7 +23,7 @@ Route::post('register', [UserController::class, 'register']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('user', [UserController::class, 'fetch']);
-    Route::post('apply/{id}', [ApplyController::class, 'apply']);
+    Route::post('apply', [ApplyController::class, 'apply']);
     Route::get('job', [JobController::class, 'index']);
     Route::get('job/{id}', [JobController::class, 'detail']);
     Route::get('apply/my-apply', [ApplyController::class, 'MyApply']);

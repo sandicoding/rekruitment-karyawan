@@ -14,10 +14,10 @@ class ApplyController extends Controller
 {
     //
 
-    public function apply(Request $request, $id)
+    public function apply(Request $request)
     {
 
-        $job = Job::find($id);
+
 
         $rules = [
             'file' => 'required|mimes:pdf,png,jpg,jpeg,gif|max:5048',
@@ -36,7 +36,6 @@ class ApplyController extends Controller
 
         $data['file'] = $request->file('file')->store('assets/file', 'public');
         $data['id_user'] = Auth::user()->id;
-        $data['id_job'] = $job->id;
 
         $apply = Apply::create($data);
 
